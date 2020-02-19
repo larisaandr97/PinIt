@@ -1,0 +1,55 @@
+﻿@model Pinterest.Models.Bookmark
+
+@{
+    ViewBag.Title = "Most recent bookmarks";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@if (TempData.ContainsKey("message"))
+{
+    <h4 class="alert alert-info" role="alert"> @ViewBag.message</h4>
+}
+<br />
+
+    <div class="row">
+        @foreach (Pinterest.Models.Bookmark bookmark in ViewBag.Bookmarks)
+        {
+            <div class="col-md-3 row-style">
+
+                @Html.Partial("BookmarkPartial", bookmark)
+            </div>
+        }
+    </div>
+
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @if (@ViewBag.currentPage > 1)
+                {
+                    <li>
+                        <a href="/Bookmark/Index?page=1" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= ViewBag.lastPage; i++)
+                {
+                    <li>
+                        <a href="/Bookmark/Index?page=@i">@(i)</a>
+                    </li>
+                }
+                @if (@ViewBag.currentPage < @ViewBag.lastPage - 1)
+                {
+                    <li>
+                        <a href="/Bookmark/Index?page=@ViewBag.lastPage" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+

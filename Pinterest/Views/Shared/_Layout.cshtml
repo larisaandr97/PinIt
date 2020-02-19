@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+    <title>@ViewBag.Title - PinIt</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/options.js"></script>
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("PinIt!", "Index", "Bookmark", new { area = "" }, new { @class = "navbar-brand", @style = "font-family:'Pacifico';" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="nav-item">
+                        @using (Html.BeginForm("Index", "Bookmark", FormMethod.Get, new { @class = "navbar-form navbar-left", @id = "optionform" }))
+                        {
+                            <div class=" input-group">
+                                @Html.TextBox("SearchText", "", new { @class = "form-control nowidth", @placeholder = "Search" })
+
+
+                                <select class="custom-select form-control nowidth" id="selectedoption" onchange="getoption()">
+                                    <option value="0" selected>Sort by</option>
+                                    <option value="1">Date</option>
+                                    <option value="2">Likes</option>
+                                </select>
+
+                                @Html.TextBox("Option", "", new { @id = "Option", @style = "display : none;" })
+
+
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" form="optionform">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Show bookmarks", "Index", "Bookmark")</li>
+                        <li>@Html.ActionLink(" ", "New", "Bookmark", new { @class = "glyphicon glyphicon-plus" })</li>
+
+
+                        <li>@Html.ActionLink("My profile", "ShowBookmarks", "Users", new { id = User.Identity.GetUserId() }, null)</li>
+
+                    }
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Show categories", "Index", "Category")</li>
+                        <li>@Html.ActionLink("Show users", "Index", "Users")</li>
+
+                    }
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

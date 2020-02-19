@@ -1,0 +1,103 @@
+﻿@model Pinterest.Models.Bookmark
+<div class="thumbnail centered col-md-6">
+    @if (Model.FilePath.StartsWith("http"))
+    {
+        <img src="@Model.FilePath" class="imag-responsive">
+    }
+    else
+    {
+        <img src="@String.Concat("../../", Model.FilePath)" class="imag-responsive">
+    }
+    <br />
+    <div class="caption">
+        <div class="bookmark-meta">
+            <a class="btn btn-default btn-xs" href="@Url.Action("Like", "Bookmark" ,new { id = Model.BookmarkId })">
+                <span class="glyphicon glyphicon-heart gi-5x">@Model.Likes</span>
+            </a>
+            <a class="btn btn-danger" data-toggle="modal" data-target="#modalSaveToCategory">
+                Save
+            </a>
+        </div>
+        <h3 style="text-align:center;">@Model.Title</h3>
+        <strong class="textBox description">@Model.Description</strong>
+        <br />
+        <br />
+        <div class="bookmark-meta">
+            <span class="">
+                <i class="glyphicon glyphicon-time"></i> <strong class="textBox">@Model.Date </strong>
+            </span>
+            <div>
+                <i class="glyphicon glyphicon-bookmark"></i><strong class="textBox"> @Model.Category.CategoryName</strong>
+            </div>
+            <div>
+                <i class="glyphicon glyphicon-user"></i> <strong class="textBox"> @Model.User.UserName </strong>
+            </div>
+        </div>
+        <p>@Model.Tags</p>
+
+        @if (ViewBag.showButtons == true)
+        {
+        <div class="bookmark-meta">
+
+
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Bookmark", method: FormMethod.Post, routeValues: new { id = Model.BookmarkId }))
+            {
+                <button class="btn btn-info" type="submit">Edit</button>
+            }
+
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Bookmark", method: FormMethod.Post, routeValues: new { id = Model.BookmarkId }))
+            {
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-danger" type="submit">Delete</button>
+            }
+
+        </div>
+
+            }
+
+        </div>
+
+</div>
+
+
+
+
+
+<!--modal-->
+<div class="modal fade" id="modalSaveToCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Choose category to save to: </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    @using (Html.BeginForm("Save", "Bookmark"))
+                    {
+                        <br />
+                        <label>Select category</label>
+                        <br/>
+                        
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(@Model.Categories, "Value", "Text"), "Select category", new { @class = "form-control" })
+
+                        @Html.Hidden("Title", Model.Title)
+                        @Html.Hidden("Description", Model.Description)
+                        @Html.HiddenFor(m => m.UserId)
+                        @Html.Hidden("FilePath", Model.FilePath)
+                        @Html.Hidden("Tags", Model.Tags)
+                        @Html.Hidden("Likes", Model.Likes)
+                        @Html.Hidden("Date", DateTime.Now, new { @class = "form-control" })
+                        <br />
+                        <input class="btn btn-sm btn-success" type="submit" value="Save" />
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

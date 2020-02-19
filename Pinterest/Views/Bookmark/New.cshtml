@@ -1,0 +1,87 @@
+﻿@model Pinterest.Models.Bookmark
+@{
+
+    ViewBag.Ti = "Add bookmark";
+}
+
+<h2 style="text-align:center;">@ViewBag.Ti</h2>
+
+<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+
+<script src="../Scripts/jquery-3.3.1.js"></script>
+
+
+<script src="../Scripts/imageupload.js"></script>
+<script src="../Scripts/tagscript.js"></script>
+
+
+
+<div class="row no-gutters">
+    @using (Html.BeginForm("New", "Bookmark", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="col-md-4 vcenter">
+            <!--upload photo-->
+            <img src="~/Content/Images/no_image_uploaded.png" alt="blank" class="img-rounded" id="imageprev">
+
+            <div class="fileUpload btn btn-primary align-middle">
+                <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+                <span>Upload your image</span>
+                <input type="file" class="upload" onchange="uploadImage(this)" name="file" id="file" />
+            </div>
+
+
+            <button type="button" class="btn btn-primary align-middle" id="link" onclick="display()">
+                <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+            </button>
+
+
+            <!--enter url-->
+            <div id="fromUrl">
+                <br />
+                @Html.TextBox("FilePath", null, new { @id = "url", @class = "form-control textBox", @placeholder = "Enter URL Source", @runat = "server" })
+                <br />
+                @Html.ValidationMessageFor(m => m.FilePath, "", new { @class = "text-danger" })
+
+                <button type="button" class="btn btn-primary" onclick="readURL(); return false">Preview</button>
+            </div>
+
+        </div>
+
+        <div class="col-md-8">
+            @Html.HiddenFor(m => m.UserId)
+            @Html.HiddenFor(m => m.BookmarkId)
+            @Html.HiddenFor(m => m.Likes)
+            @Html.Hidden("Comments", null)
+
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <br />
+
+            @Html.TextBox("Title", null, new { @class = "form-control textbox", @placeholder = "Add your title" })
+            <br />
+            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+            <br />
+
+
+            @Html.TextArea("Description", null, new { @class = "form-control textBox description", @placeholder = "Tell us what's about" })
+            <br />
+            @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+            <br />
+
+            @Html.Hidden("Date", DateTime.Now, new { @class = "form-control" })
+
+            <label>Select category</label>
+            @Html.DropDownListFor(m => m.CategoryId, new SelectList(@Model.Categories, "Value", "Text"), "Select category", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+            <br />
+
+            @ViewBag.Message
+
+            @Html.TextBox("Tags", "", new { @type = "text", @id = "tags", @data_role = "tagsinput" })
+
+            <button class="btn btn-success" type="submit">Save bookmark</button>
+        </div>
+    }
+</div>
+

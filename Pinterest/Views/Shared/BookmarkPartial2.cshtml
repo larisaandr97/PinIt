@@ -1,0 +1,38 @@
+﻿@model Pinterest.Models.Bookmark
+
+<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+<link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
+
+<script src="../../Scripts/jquery-3.3.1.js"></script>
+<script src="../../Scripts/options.js"></script>
+
+<div class="hovereffect">
+    @if (Model.FilePath.StartsWith("http"))
+    {
+        <img src="@Model.FilePath" class="imag-responsive">
+    }
+    else
+    {
+        <img src="@String.Concat("../../", Model.FilePath)" class="imag-responsive">
+    }
+
+    <div class="overlay">
+
+
+        <h3>@Model.Title</h3>
+
+
+        <p class="icon-links">
+            <a class="btn btn-default btn-xs" href="@Url.Action("Like", "Bookmark" ,new { id = Model.BookmarkId })">
+                <span class="glyphicon glyphicon-heart gi-5x">@Model.Likes</span>
+                <!-- <span class="glyphicon glyphicon-heart-empty gi-5x">@@Model.Likes</span>-->
+            </a>
+
+            <a class="btn btn-default btn-xs" href="/Bookmark/Show/@Model.BookmarkId">
+                <span class=" glyphicon glyphicon-zoom-in gi-5x "> </span>
+            </a>
+
+        </p>
+
+    </div>
+</div>

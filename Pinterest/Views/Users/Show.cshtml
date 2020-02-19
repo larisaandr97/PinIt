@@ -1,0 +1,42 @@
+﻿@model Pinterest.Models.ApplicationUser
+@{
+    ViewBag.Titlu = "Afisare utilizator";
+}
+
+
+
+<h1>@ViewBag.Titlu</h1>
+
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">Username: @Model.UserName</div>
+    <div class="panel-body">
+        <i class="glyphicon glyphicon-envelope"></i> User Role:
+        <span class="label label-default">@ViewBag.roleName</span>
+        <br /> <br />
+
+        <i class="glyphicon glyphicon-envelope"></i> User Email:
+        <span class="label label-default">@Model.Email</span>
+        <br /><br />
+
+        @if (@Model.PhoneNumber != null)
+        {
+            <i class="glyphicon glyphicon-phone"></i>@:User phone number:<span class="label label-default">@Model.PhoneNumber</span>
+        }
+    </div>
+</div>
+
+<form method="post" action="/Users/Delete/@Model.Id">
+
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    @if (@Model.Id != ViewBag.utilizatorCurent)
+    {
+        <br />
+        <button class="btn btn-success" type="submit">Delete user</button>
+    }
+</form>
+<br />
+
+<hr />
+<a class="btn btn-success" href="/Users/Index">Inapoi la utilizatori</a>
+<br />

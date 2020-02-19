@@ -1,0 +1,66 @@
+﻿
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+<link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
+<script src="../../Scripts/jquery-3.3.1.js"></script>
+
+
+@{
+    ViewBag.Title = "ShowBookmarks";
+}
+
+<h2 class=" titleShowBookmarks">Your bookmarks</h2>
+
+@foreach (Pinterest.Models.Category category in ViewBag.Categories)
+{
+
+    <div class="col-md-10 col-md-offset-1 slidere">
+        <p class="categoryName"> @category.CategoryName</p>
+
+        <div class="slider">
+            <ul>
+
+
+                @foreach (Pinterest.Models.Bookmark bookmark in ViewBag.allBookmarks)
+                {
+
+                    if (category.CategoryId == bookmark.CategoryId)
+                    {
+                        <li>
+                            <a href="/Bookmark/Show/@bookmark.BookmarkId">
+
+                                @if (bookmark.FilePath.StartsWith("http"))
+                                {
+                                    <img src="@bookmark.FilePath" class="imag-responsive">
+                                }
+                                else
+                                {
+                                    <img src="@String.Concat("../../", bookmark.FilePath)" class="imag-responsive">
+                                }
+                            </a>
+                        </li>
+
+                    }
+                }
+            </ul>
+
+            <span class="left carousel-control slider_left" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></span>
+            <span class="right carousel-control slider_right" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></span>
+
+        </div>
+    </div>
+
+
+    <!--
+            <div class=" containerShowBookmarks">
+                <img class="img-responsive img-fluid" src="../../bookmark.FilePath" />
+            </div> -->
+
+
+
+
+
+
+}
+<script src="../../Scripts/slider.js"></script>

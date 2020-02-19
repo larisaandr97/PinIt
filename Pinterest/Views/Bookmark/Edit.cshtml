@@ -1,0 +1,43 @@
+﻿@model Pinterest.Models.Bookmark
+<h2>@ViewBag.Title</h2>
+<script src="../../Scripts/tagscript.js"></script>
+<div class="row">
+    <div class="col-md-6" style="text-align:center;display: flex;justify-content: center; margin-top:3%;">
+        <img src="~/Images/@Model.FilePath" class="imag-responsive" />
+    </div>
+    <br />
+    <div class="thumbnail col-md-6 row-style" style="text-align:center;display: flex;justify-content: center;">
+        @using (Html.BeginForm(actionName: "Edit", controllerName: "Bookmark"))
+        {
+            @Html.Hidden("FilePath", Model.FilePath)
+            @Html.HttpMethodOverride(HttpVerbs.Put)
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" }) <br />
+            @Html.Label("Title", "Title")
+            <br />
+            @Html.EditorFor(m => m.Title)
+            <br /><br />
+
+
+            @Html.Label("Description", "Description")
+            <br />
+            @Html.EditorFor(m => m.Description)
+            <br /><br />
+
+
+            @Html.Label("Tags", "Tags")
+            <br />
+            @Html.Editor("Tags", Model.Tags, new { @type = "text", @id = "tags", @data_role = "tagsinput" })
+
+            @Html.HiddenFor(m => m.Date)
+            <br /><br />
+            <label>Select category</label>
+            @Html.DropDownListFor(m => m.CategoryId,
+                new SelectList(Model.Categories, "Value", "Text"),
+                "Select category", new { @class = "form-control" })
+            <br />
+
+            <br />
+            <input class="btn btn-sm btn-success" type="submit" value="Modify bookmark" />
+        }
+    </div>
+</div>

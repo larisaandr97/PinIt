@@ -1,0 +1,39 @@
+﻿@model Pinterest.Models.Category
+
+@{
+    ViewBag.Title = "Show category";
+}
+
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        Name:  <strong>@Model.CategoryName</strong>
+        <br />
+    </div>
+    <div class="panel-footer">
+        @if (ViewBag.afisareButoane == true)
+        {
+            <a class="btn btn-success" href="/Category/Edit/@Model.CategoryId"> Modify category</a>
+        }
+        <br />
+    </div>
+</div>
+
+<form method="post" action="/Category/Delete/@Model.CategoryId">
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <br />
+    @if (ViewBag.afisareButoane == true)
+    {
+        <button class="btn btn-success" type="submit">Delete category</button>
+    }
+</form>
+<br />
+
+<hr />
+<a class="btn btn-success" href="/Category/Index">Back to categories</a>
+<br /><br />
+@if (ViewBag.afisareButoane == true)
+{
+    <a class="btn btn-info" href="/Category/New">Add category</a>
+}
+<br />

@@ -1,0 +1,91 @@
+﻿@model Pinterest.Models.Bookmark
+@{
+    ViewBag.Titlu = "Show bookmark";
+}
+<link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+
+<br />
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+<div class="row no-gutters panel panel-default" id="bookmarkprev">
+
+    @Html.Partial("BookmarkInfo", Model, new ViewDataDictionary() { { "Categories", ViewBag.Categories }, { "showButtons", ViewBag.showButtons } })
+    <br /><br />
+    <div class="col-md-6">
+        @using (Html.BeginForm("New", "Comment", FormMethod.Post, new { @class = "centered" }))
+        {
+
+            @Html.Hidden("BookmarkId", Model.BookmarkId)
+
+
+            @Html.TextArea("Content", null, new { @class = "textBox description centered", @placeholder = "Type your comment here...", @style = "border-radius:20px;" })
+            @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
+            <br />
+
+
+            @Html.Hidden("Date", DateTime.Now, new { @class = "form-control" })
+
+            <button class="btn btn-info" type="submit">Post</button>
+            <br />
+            <br />
+
+        }
+
+
+        <div class="comment-wrapper" style="margin-left:5%;max-height:400px;overflow:scroll;">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Comment panel
+                </div>
+                <div class="panel-body" style="height:80%;">
+                    <ul class="media-list">
+                        @foreach (Pinterest.Models.Comment comment in ViewBag.Comments)
+                        {
+
+                            <li class="media">
+
+                                <div class="media-body">
+                                    <span class="text-muted pull-right">
+                                        <small class="text-muted">@comment.Date</small>
+                                    </span>
+
+                                    <strong class="pull-left">@comment.UserName</strong>
+                                    <br />
+                                    <p>
+                                        @comment.Content
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                                @if (ViewBag.showButtons == true)
+                                {
+                                    using (Html.BeginForm(actionName: "Delete", controllerName: "Comment", method: FormMethod.Post, routeValues: new { id = comment.CommentId }))
+                                    {
+                                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    }
+
+
+
+                                }
+
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row no-gutters panel panel-default" id="bookmarkprev">
+    <h4 style="margin:3%; font-family:'Pacifico'; font-size:28px;">More like this...</h4>
+    @foreach (Pinterest.Models.Bookmark bookmark in ViewBag.moreLikeThis)
+    {
+    <div class="col-md-3 row-style">
+
+        @Html.Partial("BookmarkPartial2", bookmark)
+    </div>
+    }
+    </div>

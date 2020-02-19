@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "List of categories";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@if (TempData.ContainsKey("message"))
+{
+    <h4 class="alert alert-info" role="alert"> @ViewBag.message</h4>
+}
+<br />
+
+@foreach (Pinterest.Models.Category category in ViewBag.Categories)
+{
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            Nume categorie: <strong>@category.CategoryName</strong>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-success"
+               href="/Category/Show/@category.CategoryId">Show category</a>
+        </div>
+    </div>
+    <br />
+}
+
+<br />
+
+    <a class="btn btn-success" href="/Bookmark/Index">Show bookmarks</a>
+    <br /><br />
+    <a class="btn btn-info" href="/Category/New">Add category</a>
+    <br />
+
+
+

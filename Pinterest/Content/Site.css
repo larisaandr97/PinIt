@@ -1,0 +1,493 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.panel-bookmark {
+    box-shadow: 0 2px 6px #ccc;
+    border-radius: 0 !important;
+}
+
+.bookmark-panel-footer {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+    .bookmark-panel-footer.around {
+        justify-content: space-around;
+    }
+
+.bookmark-heading {
+    background-color: #fff !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: 0 2px 6px #f2f2f2;
+    font-size: 15px;
+}
+
+.bookmark-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3c3c3c;
+}
+
+.bookmark-content-title {
+    font-weight: bold;
+    color: #3c3c3c;
+}
+
+.bookmark-content-wrapper {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+    .bookmark-content-wrapper * {
+        font-size: 13px !important;
+    }
+
+.bookmark-meta {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1px;
+}
+
+    .bookmark-meta:hover {
+        background-color: #fafafa;
+    }
+
+    .bookmark-meta > * {
+        display: block;
+    }
+
+
+.saveButton {
+    background-color: #f44336;
+    position: absolute;
+    top: -35px;
+    right: 12px;
+}
+
+h3, .textBox, h4 {
+    font-family: 'Solway', serif;
+}
+
+.description {
+    font-size: 18px;
+    text-align: center;
+    max-width: 400px !important;
+    max-height: 200px !important;
+    min-width: 300px !important;
+    min-height: 100px !important;
+}
+
+/* #tagsPanel {
+    visibility: hidden;
+}*/
+
+.centered {
+    text-align: center;
+}
+
+.hovereffect {
+    width: 100%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+    .hovereffect .overlay {
+        width: 100%;
+        position: absolute;
+        overflow: hidden;
+        left: 0;
+        top: auto;
+        bottom: 0;
+        padding: 1em;
+        height: 4.75em;
+        background: #79FAC4;
+        color: #3c4a50;
+        -webkit-transition: -webkit-transform 0.35s;
+        transition: transform 0.35s;
+        -webkit-transform: translate3d(0,100%,0);
+        transform: translate3d(0,100%,0);
+        visibility: hidden;
+    }
+
+    .hovereffect img {
+        display: block;
+        position: relative;
+        -webkit-transition: -webkit-transform 0.35s;
+        transition: transform 0.35s;
+    }
+
+
+
+    .hovereffect h3 {
+        text-transform: uppercase;
+        color: white;
+        text-align: center;
+        position: relative;
+        font-size: 15px;
+        padding: 5px;
+        /*background: #b3d9ff;*/
+        /*  float: left;*/
+        margin: 0px;
+        display: inline-block;
+    }
+
+    .hovereffect a.info, .hovereffect .saveButton {
+        display: inline-block;
+        text-decoration: none;
+        /*padding: 7px 14px;*/
+        text-transform: uppercase;
+        /* color: #fff;*/
+        border: 1px solid #fff;
+        margin: 50px 0 0 0;
+        /*background-color: transparent;*/
+    }
+
+        .hovereffect a.info:hover {
+            box-shadow: 0 0 5px #fff;
+        }
+
+
+    .hovereffect p.icon-links {
+        display: flex;
+        flex-direction: row;
+        align-content: space-between;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1px;
+    }
+
+        .hovereffect p.icon-links a {
+            /*float: right;*/
+            color: #3c4a50;
+            font-size: 13px;
+        }
+
+    .hovereffect:hover p.icon-links a:hover,
+    .hovereffect:hover p.icon-links a:focus {
+        color: #252d31;
+    }
+
+    .hovereffect h3,
+    .hovereffect p.icon-links a, .hovereffect .saveButton {
+        -webkit-transition: -webkit-transform 0.35s;
+        transition: transform 0.35s;
+        -webkit-transform: translate3d(0,200%,0);
+        transform: translate3d(0,200%,0);
+        visibility: visible;
+    }
+
+        .hovereffect p.icon-links a span:before {
+            display: inline-block;
+            /*padding: 8px 10px;*/
+            speak: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+
+    .hovereffect:hover .overlay,
+    .hovereffect:hover h3,
+    .hovereffect:hover p.icon-links a, .hovereffect .saveButton {
+        -webkit-transform: translate3d(0,-35%,0);
+        transform: translate3d(0,-35%,0);
+    }
+
+    .hovereffect:hover h3 {
+        -webkit-transition-delay: 0.05s;
+        transition-delay: 0.05s;
+    }
+
+.gi-5x {
+    font-size: 2em;
+}
+
+.font-logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.mine {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+}
+
+#imageprev{
+    max-width: 100%;
+    max-height: 30rem;
+}
+
+#link {
+    float: right;
+    margin-top: 20px;
+}
+
+#fromUrl {
+    display: none;
+}
+
+.imag-responsive {
+    max-width : 400px;
+    max-height : 350px;
+    display : block;
+    height : auto;
+    width : auto;
+}
+
+
+/* bootstrap-tagsinput.css file - add in local */
+
+.bootstrap-tagsinput {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    display: inline-block;
+    padding: 4px 6px;
+    color: #555;
+    vertical-align: middle;
+    border-radius: 4px;
+    max-width: 100%;
+    line-height: 22px;
+    cursor: text;
+}
+
+    .bootstrap-tagsinput input {
+        border: none;
+        box-shadow: none;
+        outline: none;
+        background-color: transparent;
+        padding: 0 6px;
+        margin: 0;
+        width: auto;
+        max-width: inherit;
+    }
+
+    .bootstrap-tagsinput.form-control input::-moz-placeholder {
+        color: #777;
+        opacity: 1;
+    }
+
+    .bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+        color: #777;
+    }
+
+    .bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+        color: #777;
+    }
+
+    .bootstrap-tagsinput input:focus {
+        border: none;
+        box-shadow: none;
+    }
+
+    .bootstrap-tagsinput .tag {
+        margin-right: 2px;
+        color: white;
+    }
+
+        .bootstrap-tagsinput .tag [data-role="remove"] {
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+            .bootstrap-tagsinput .tag [data-role="remove"]:after {
+                content: "x";
+                padding: 0px 2px;
+            }
+
+            .bootstrap-tagsinput .tag [data-role="remove"]:hover {
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+                .bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
+                    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                }
+
+#bookmarkprev{
+    margin-top: 5%;
+}
+
+/* DE AICI AM PUS EU*/
+.navb {
+    border-radius: 20px;
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: white !important;
+}
+
+.user_card {
+    margin-top: auto;
+    margin-bottom: auto;
+    background: whitesmoke;
+    position: relative;
+    display: inline-table;
+    justify-content: center;
+    flex-direction: column;
+    padding: 80px;
+    margin-top: 120px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    align-content: center !important;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -75px;
+    border-radius: 50%;
+    background: white;
+    padding: 10px;
+    text-align: center;
+    margin-left: 35px;
+}
+
+.brand_logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.form_container {
+    margin-top: 100px;
+}
+
+.login_btn {
+    width: 100%;
+    background: #B22222;
+    color: white !important;
+}
+
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+
+.login_container {
+    padding: 0 2rem;
+}
+
+.input-group-text {
+    background: grey !important;
+    color: white !important;
+    border: 0 !important;
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+}
+
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: grey !important;
+}
+
+.farahover {
+    on-hover:
+}
+
+.register {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.navbar-color {
+    background-color: whitesmoke;
+    border-color: #d4cbcb;
+}
+
+#butonRegister:hover {
+    background-color: #B22222;
+}
+
+.nowidth{
+    width : inherit;
+}
+
+.comment-wrapper .panel-body {
+    max-height: 650px;
+    overflow: auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom: 1px dashed #efefef;
+    margin-bottom: 25px;
+}
