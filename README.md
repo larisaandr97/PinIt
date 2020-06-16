@@ -1,4 +1,4 @@
-# Pinterest
+# PinIt
 ASP.NET MVC 5 application that allows the user to:
 -upload bookmarks
 -save existing ones to their profile
